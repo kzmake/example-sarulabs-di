@@ -1,5 +1,12 @@
 package renderer
 
+import (
+	"github.com/davecgh/go-spew/spew"
+	"github.com/spf13/cobra"
+
+	"github.com/kzmake/example-sarulabs-di/usecase/port"
+)
+
 // TaskRenderer ...
 type TaskRenderer struct {
 }
@@ -10,11 +17,6 @@ func NewTaskRenderer() *TaskRenderer {
 }
 
 // CreateTask ...
-func (r *TaskRenderer) CreateTask() () {
-	res, err := i.DataSourceRepository.FindAll()
-	if err != nil {
-	  return nil, err
-	}
-	// Output Port の使用
-	return i.OutputPort.DownloadDataSources(res)
-  }
+func (r *TaskRenderer) CreateTask(cmd *cobra.Command, o *port.CreateTaskOutputData) {
+	cmd.Println(spew.Sdump(o))
+}

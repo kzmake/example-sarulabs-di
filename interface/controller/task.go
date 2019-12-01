@@ -1,8 +1,6 @@
 package controller
 
 import (
-	"fmt"
-
 	"github.com/kzmake/example-sarulabs-di/usecase/port"
 )
 
@@ -21,11 +19,9 @@ func NewTaskController(input port.CreateTaskInputPort, output port.CreateTaskOut
 }
 
 // CreateTask ...
-func (c *TaskController) CreateTask(d string) (*port.CreateTaskOutputData, error) {
-	in := &port.CreateTaskInputData{Data: d}
+func (c *TaskController) CreateTask(data string) *port.CreateTaskOutputData {
+	in := &port.CreateTaskInputData{Data: data}
 	_t, _ := c.createIn.Execute(in)
-
-	fmt.Println("controller...")
 
 	return c.createOut.Execute(_t)
 }

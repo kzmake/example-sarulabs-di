@@ -1,7 +1,10 @@
 package interactor
 
 import (
-	"fmt"
+	"math/rand"
+	"time"
+
+	"github.com/oklog/ulid/v2"
 
 	"github.com/kzmake/example-sarulabs-di/domain/entity"
 	"github.com/kzmake/example-sarulabs-di/usecase/port"
@@ -18,12 +21,14 @@ func NewCreateTaskInteractor() port.CreateTaskInputPort {
 
 // Execute ...
 func (i *CreateTaskInteractor) Execute(input *port.CreateTaskInputData) (*entity.Task, error) {
-	t := &entity.Task{
-		ID:   "1",
-		Data: "data",
+	t := time.Now()
+	entropy := ulid.Monotonic(rand.New(rand.NewSource(t.UnixNano())), 0)
+	id := ulid.MustNew(ulid.Timestamp(t), entropy).String()
+
+	task := &entity.Task{
+		ID:   id,
+		Data: input.Data,
 	}
 
-	fmt.Println("usecase...")
-
-	return t, nil
+	return task, nil
 }

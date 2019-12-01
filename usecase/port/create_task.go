@@ -22,5 +22,5 @@ type CreateTaskInputPort interface {
 
 // CreateTaskOutputPort ...
 type CreateTaskOutputPort interface {
-	Execute(*entity.Task) (*CreateTaskOutputData, error)
+	Execute(*entity.Task) *CreateTaskOutputData
 }

@@ -1,8 +1,6 @@
 package presenter
 
 import (
-	"fmt"
-
 	"github.com/kzmake/example-sarulabs-di/domain/entity"
 	"github.com/kzmake/example-sarulabs-di/usecase/port"
 )
@@ -17,12 +15,10 @@ func NewCreateTaskPresenter() port.CreateTaskOutputPort {
 }
 
 // Execute ...
-func (p *CreateTaskPresenter) Execute(t *entity.Task) (*port.CreateTaskOutputData, error) {
-	dpo := &port.CreateTaskOutputData{
+func (p *CreateTaskPresenter) Execute(t *entity.Task) *port.CreateTaskOutputData {
+	payload := &port.CreateTaskOutputData{
 		Task: t,
 	}
 
-	fmt.Println("presenter...")
-
-	return dpo, nil
+	return payload
 }
